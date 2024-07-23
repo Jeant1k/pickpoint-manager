@@ -1,0 +1,222 @@
+syntax = "proto3";
+
+package pickpoint;
+
+option go_package = "gitlab.ozon.dev/evgeniy_tikh0n08/homework-1/pkg/grpc/pickpoint;pickpoint";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "validate/validate.proto";
+
+service Pickpoint {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {
+        description: "Pickpoint service"
+    };    
+    rpc RegistratePickPointId(RegistratePickPointIdRequest) returns (google.protobuf.Empty){
+        option(google.api.http) = {
+            post: "/v1/registrate"
+            body: "*"
+        };
+    };
+    rpc AcceptOrderFromCurier(AcceptOrderFromCurierRequest) returns (google.protobuf.Empty){
+        option(google.api.http) = {
+            post: "/v1/accept-order"
+            body: "*"
+        };
+    };
+    rpc ReturnOrderToCurier(ReturnOrderToCurierRequest) returns (google.protobuf.Empty){
+        option(google.api.http) = {
+            post: "/v1/return-order"
+            body: "*"
+        };
+    };
+    rpc IssueOrderToClient(IssueOrderToClientRequest) returns (google.protobuf.Empty){
+        option(google.api.http) = {
+            post: "/v1/issue-order"
+            body: "*"
+        };
+    };
+    rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse){
+        option(google.api.http) = {
+            post: "/v1/list-orders"
+            body: "*"
+        };
+    };
+    rpc AcceptReturnFromClient(AcceptReturnFromClientRequest) returns (google.protobuf.Empty){
+        option(google.api.http) = {
+            post: "/v1/accept-return"
+            body: "*"
+        };
+    };
+    rpc ListReturns(ListReturnsRequest) returns (ListReturnsResponse){
+        option(google.api.http) = {
+            post: "/v1/list-returns"
+            body: "*"
+        };
+    };
+    rpc Help(google.protobuf.Empty) returns (HelpResponse){
+        option(google.api.http) = {
+            post: "/v1/help"
+            body: "*"
+        };
+    };
+}
+
+message OrderId {
+    int64 order_id = 1 [(validate.rules).int64 = {gt: 0}];
+}
+
+message ClientId {
+    int64 client_id = 1 [(validate.rules).int64 = {gt: 0}];
+}
+
+message PickPointId {
+    int64 pick_point_id = 1 [(validate.rules).int64 = {gt: 0}];
+}
+
+message Order {
+    OrderId order_id = 1;
+    ClientId client_id = 2;
+    google.protobuf.Timestamp added_date = 3;
+    google.protobuf.Timestamp shelf_life = 4;
+    bool issued = 5;
+    google.protobuf.Timestamp issue_date = 6;
+    bool returned = 7;
+    google.protobuf.Timestamp return_date = 8;
+    bool deleted = 9;
+    google.protobuf.Timestamp deleted_date = 10;
+    string hash = 11 [(validate.rules).string = {min_len: 1}];
+    double weight = 12 [(validate.rules).double = {gt: 0}];
+    double cost = 13 [(validate.rules).double = {gt: 0}];
+    enum PackageType {
+        PACKAGE_TYPE_UNSPECIFIED = 0;
+        PACKAGE_TYPE_BAG = 1;
+        PACKAGE_TYPE_BOX = 2;
+        PACKAGE_TYPE_FILM = 3;
+    }
+    PackageType package = 14 [(validate.rules).enum = {defined_only: true}];
+}
+
+message RegistratePickPointIdRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "RegistratePickPointIdRequest"
+            description: "Описание..."
+            required: ["pick_point_id"]
+        }
+    };
+    
+    PickPointId pick_point_id = 1;
+}
+
+message OrderWithPickPoint {
+    Order order = 1;
+    PickPointId pick_point_id = 2;
+}
+
+message Command {
+    string name = 1 [(validate.rules).string = {min_len: 1}];
+    string description = 2;
+}
+
+message AcceptOrderFromCurierRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "AcceptOrderFromCurierRequest"
+            description: "Описание..."
+            required: ["order"]
+        }
+    };
+    Order order = 1;
+}
+
+message ReturnOrderToCurierRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "ReturnOrderToCurierRequest"
+            description: "Описание..."
+            required: ["order_id"]
+        }
+    };
+    OrderId order_id = 1;
+}
+
+message IssueOrderToClientRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "IssueOrderToClientRequest"
+            description: "Описание..."
+            required: ["order_ids"]
+        }
+    };
+    repeated OrderId order_ids = 1;
+}
+
+message ListOrdersRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "ListOrdersRequest"
+            description: "Описание..."
+            required: ["client_id"]
+        }
+    };
+    ClientId client_id = 1;
+    optional int64 limit = 2 [(validate.rules).int64 = {gte: 0}];
+    optional PickPointId pick_point_id = 3;
+}
+
+message ListOrdersResponse {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "ListOrdersResponse"
+            description: "Описание..."
+        }
+    };
+    repeated OrderWithPickPoint list = 1;
+}
+
+message AcceptReturnFromClientRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "AcceptReturnFromClientRequest"
+            description: "Описание..."
+            required: ["client_id", "order_id"]
+        }
+    };
+    ClientId client_id = 1;
+    OrderId order_id = 2;
+}
+
+message ListReturnsRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "ListReturnsRequest"
+            description: "Описание..."
+            required: ["page", "page_size"]
+        }
+    };
+    int64 page = 1 [(validate.rules).int64 = {gt: 0}];
+    int64 page_size = 2 [(validate.rules).int64 = {gt: 0}];
+}
+
+message ListReturnsResponse {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "ListReturnsResponse"
+            description: "Описание..."
+        }
+    };
+    repeated Order orders = 1;
+}
+
+message HelpResponse {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            title: "HelpResponse"
+            description: "Описание..."
+        }
+    };
+    repeated Command commands = 1;
+}

@@ -1,0 +1,587 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "pickpoint/v1/pickpoint.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Pickpoint",
+      "description": "Pickpoint service"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/accept-order": {
+      "post": {
+        "operationId": "Pickpoint_AcceptOrderFromCurier",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Описание...",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pickpointAcceptOrderFromCurierRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    },
+    "/v1/accept-return": {
+      "post": {
+        "operationId": "Pickpoint_AcceptReturnFromClient",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Описание...",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pickpointAcceptReturnFromClientRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    },
+    "/v1/help": {
+      "post": {
+        "operationId": "Pickpoint_Help",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pickpointHelpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    },
+    "/v1/issue-order": {
+      "post": {
+        "operationId": "Pickpoint_IssueOrderToClient",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Описание...",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pickpointIssueOrderToClientRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    },
+    "/v1/list-orders": {
+      "post": {
+        "operationId": "Pickpoint_ListOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pickpointListOrdersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Описание...",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pickpointListOrdersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    },
+    "/v1/list-returns": {
+      "post": {
+        "operationId": "Pickpoint_ListReturns",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pickpointListReturnsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Описание...",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pickpointListReturnsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    },
+    "/v1/registrate": {
+      "post": {
+        "operationId": "Pickpoint_RegistratePickPointId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Описание...",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pickpointRegistratePickPointIdRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    },
+    "/v1/return-order": {
+      "post": {
+        "operationId": "Pickpoint_ReturnOrderToCurier",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Описание...",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pickpointReturnOrderToCurierRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pickpoint"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "OrderPackageType": {
+      "type": "string",
+      "enum": [
+        "PACKAGE_TYPE_UNSPECIFIED",
+        "PACKAGE_TYPE_BAG",
+        "PACKAGE_TYPE_BOX",
+        "PACKAGE_TYPE_FILM"
+      ],
+      "default": "PACKAGE_TYPE_UNSPECIFIED"
+    },
+    "pickpointAcceptOrderFromCurierRequest": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/pickpointOrder"
+        }
+      },
+      "description": "Описание...",
+      "title": "AcceptOrderFromCurierRequest",
+      "required": [
+        "order"
+      ]
+    },
+    "pickpointAcceptReturnFromClientRequest": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "$ref": "#/definitions/pickpointClientId"
+        },
+        "orderId": {
+          "$ref": "#/definitions/pickpointOrderId"
+        }
+      },
+      "description": "Описание...",
+      "title": "AcceptReturnFromClientRequest",
+      "required": [
+        "clientId",
+        "orderId"
+      ]
+    },
+    "pickpointClientId": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "pickpointCommand": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "pickpointHelpResponse": {
+      "type": "object",
+      "properties": {
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pickpointCommand"
+          }
+        }
+      },
+      "description": "Описание...",
+      "title": "HelpResponse"
+    },
+    "pickpointIssueOrderToClientRequest": {
+      "type": "object",
+      "properties": {
+        "orderIds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pickpointOrderId"
+          }
+        }
+      },
+      "description": "Описание...",
+      "title": "IssueOrderToClientRequest",
+      "required": [
+        "orderIds"
+      ]
+    },
+    "pickpointListOrdersRequest": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "$ref": "#/definitions/pickpointClientId"
+        },
+        "limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "pickPointId": {
+          "$ref": "#/definitions/pickpointPickPointId"
+        }
+      },
+      "description": "Описание...",
+      "title": "ListOrdersRequest",
+      "required": [
+        "clientId"
+      ]
+    },
+    "pickpointListOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pickpointOrderWithPickPoint"
+          }
+        }
+      },
+      "description": "Описание...",
+      "title": "ListOrdersResponse"
+    },
+    "pickpointListReturnsRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string",
+          "format": "int64"
+        },
+        "pageSize": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "description": "Описание...",
+      "title": "ListReturnsRequest",
+      "required": [
+        "page",
+        "pageSize"
+      ]
+    },
+    "pickpointListReturnsResponse": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pickpointOrder"
+          }
+        }
+      },
+      "description": "Описание...",
+      "title": "ListReturnsResponse"
+    },
+    "pickpointOrder": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "$ref": "#/definitions/pickpointOrderId"
+        },
+        "clientId": {
+          "$ref": "#/definitions/pickpointClientId"
+        },
+        "addedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "shelfLife": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "issued": {
+          "type": "boolean"
+        },
+        "issueDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "returned": {
+          "type": "boolean"
+        },
+        "returnDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "deletedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number",
+          "format": "double"
+        },
+        "cost": {
+          "type": "number",
+          "format": "double"
+        },
+        "package": {
+          "$ref": "#/definitions/OrderPackageType"
+        }
+      }
+    },
+    "pickpointOrderId": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "pickpointOrderWithPickPoint": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/pickpointOrder"
+        },
+        "pickPointId": {
+          "$ref": "#/definitions/pickpointPickPointId"
+        }
+      }
+    },
+    "pickpointPickPointId": {
+      "type": "object",
+      "properties": {
+        "pickPointId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "pickpointRegistratePickPointIdRequest": {
+      "type": "object",
+      "properties": {
+        "pickPointId": {
+          "$ref": "#/definitions/pickpointPickPointId"
+        }
+      },
+      "description": "Описание...",
+      "title": "RegistratePickPointIdRequest",
+      "required": [
+        "pickPointId"
+      ]
+    },
+    "pickpointReturnOrderToCurierRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "$ref": "#/definitions/pickpointOrderId"
+        }
+      },
+      "description": "Описание...",
+      "title": "ReturnOrderToCurierRequest",
+      "required": [
+        "orderId"
+      ]
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+useKafka: true
+
+dbURL: "postgres://postgres:examplepassword@localhost:5432/oms?sslmode=disable"
+
+kafka:
+  brokers:
+    - "localhost:9092"
+  topic: "logs"
+
+useRedis: false
+redis:
+  url: "localhost:6379"
+  password: "qwerty"
+  ttl: 180
+
+memorycache:
+  ttl: 180
